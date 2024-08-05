@@ -40,7 +40,7 @@ const localAuthMiddleware=passport.authenticate('local',{session:false})
 
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow your frontend's origin
+    origin: ['http://localhost:3000','https://wmc-project-tk78.onrender.com'], // Allow your frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow the HTTP methods you need
     allowedHeaders: ['Content-Type', 'Authorization'] // Allow headers you need
   }));
