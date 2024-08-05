@@ -8,6 +8,10 @@
     "wmc": "npm start --prefix wmc",
     "dev": "concurrently \"npm run server\" \"npm --prefix ../wmc start\""
   },
+  "devServer" : {
+    "allowedHosts": "all" 
+
+  },
   "author": "",
   "license": "ISC",
   "description": "",
