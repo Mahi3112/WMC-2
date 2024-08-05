@@ -42,7 +42,9 @@ const localAuthMiddleware=passport.authenticate('local',{session:false})
 app.use(cors({
     origin: ['https://wmc-project-tk78.onrender.com'], // Allow your frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow the HTTP methods you need
-    allowedHeaders: ['Content-Type', 'Authorization'] // Allow headers you need
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow headers you need
+    credentials: true, // Allow cookies if needed
+
   }));
   app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
