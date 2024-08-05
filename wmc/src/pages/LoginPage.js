@@ -197,7 +197,7 @@ const LoginPage = () => {
     event.preventDefault();
     if (username && password) {
       try {
-        const response = await axios.post('/user/login', { username, password });
+        const response = await axios.post('https://wmc-project-tk78.onrender.com/user/login', { username, password });
         const { token, user } = response.data;
   
         // Store token and user information in local storage
