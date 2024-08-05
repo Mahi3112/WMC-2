@@ -731,7 +731,7 @@ const HomePage = () => {
 
 <EventsSection>
         <EventsTitle>Upcoming Events</EventsTitle>
-        <EventsGrid>
+        {/* <EventsGrid>
           {displayedEvents.map(event => (
             <EventCard key={event.id} style={{border:'2px solid #BC79A6'}}>
               
@@ -740,7 +740,21 @@ const HomePage = () => {
               <KnowMoreButton to='/events'>Know More</KnowMoreButton>
             </EventCard>
           ))}
-        </EventsGrid>
+        </EventsGrid> */}
+        <EventsGrid>
+  {Array.isArray(displayedEvents) && displayedEvents.length > 0 ? (
+    displayedEvents.map(event => (
+      <EventCard key={event.id} style={{ border: '2px solid #BC79A6' }}>
+        <h3>{event.title}</h3>
+        <p>{event.description}</p>
+        <KnowMoreButton to='/events'>Know More</KnowMoreButton>
+      </EventCard>
+    ))
+  ) : (
+    <p>No events available</p>
+  )}
+</EventsGrid>
+
       </EventsSection>
       <BackgroundSection style={{ backgroundImage: `url(${backgroundImage2})`,width:'100%',height:'750px' }}>
         
