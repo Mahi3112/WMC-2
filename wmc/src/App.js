@@ -12,7 +12,7 @@ import InquiryPage from './pages/InquiryPage';
 import AdminInquiriesPage from './pages/AdminInquiryPage';
 const App = () => {
   
-  
+  App.use(cors());
   const user = JSON.parse(localStorage.getItem('user')); 
   console.log('User from localStorage:', user);
   const NotFoundPage = () => {
