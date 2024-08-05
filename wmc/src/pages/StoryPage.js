@@ -347,7 +347,7 @@ const StoryPage = () => {
     const fetchVirtualCurrency = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:8000/user/getprofile', {
+            const response = await axios.get('https://wmc-5.onrender.com/user/getprofile', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

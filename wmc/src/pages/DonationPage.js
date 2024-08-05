@@ -17,7 +17,7 @@ const DonationPage = () => {
         const fetchVirtualCurrency = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:8000/user/getprofile', {
+                const response = await axios.get('https://wmc-5.onrender.com/user/getprofile', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -34,7 +34,7 @@ const DonationPage = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://localhost:8000/donation/donate', { amount }, {
+            const response = await axios.post('https://wmc-5.onrender.com/donation/donate', { amount }, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
