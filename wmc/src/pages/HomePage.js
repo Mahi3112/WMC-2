@@ -704,7 +704,7 @@ const HomePage = () => {
       <NavButton>
       <FlexContainer>
         <BsCurrencyExchange className="icon" />
-        <div>{virtualCurrency !== undefined ? virtualCurrency.toLocaleString() : 'N/A'}</div> {/* Format if needed */}
+        <div> {virtualCurrency !== undefined ? virtualCurrency.toLocaleString() : 'N/A'}</div> {/* Format if needed */}
       </FlexContainer>
       </NavButton>
     </NavButtonsContainer>
