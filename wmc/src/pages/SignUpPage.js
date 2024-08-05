@@ -225,7 +225,7 @@ const SignUpPage = () => {
 
     // Include role in the data
     try {
-      const url = "https://wmc-5.onrender.com/user/signup";
+      const url = "http://localhost:3000/user/signup";
       const { data: res } = await axios.post(url, data);
       navigate("/");
       console.log(res.message);
