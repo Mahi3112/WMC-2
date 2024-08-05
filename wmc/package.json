@@ -1,4 +1,4 @@
-{"proxy":"http://localhost:8000",
+{"proxy":"https://wmc-project-tk78.onrender.com",
   "name": "wmc",
   "version": "0.1.0",
   "private": true,
