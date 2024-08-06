@@ -211,7 +211,11 @@ const AdminInquiryPage = () => {
   useEffect(() => {
     const fetchInquiries = async () => {
       try {
-        const response = await axios.get('/inquiry/');
+        const response = await axios.get('/inquiry/', {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                  });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
