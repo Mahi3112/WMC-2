@@ -211,15 +211,14 @@ const AdminInquiryPage = () => {
   useEffect(() => {
     const fetchInquiries = async () => {
       try {
-        const response = await axios.get('/inquiry/', {
-                    headers: {
-                      Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
-                  });
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
+        const response = await axios.get('/api/inquiries', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
+        // Axios already parses JSON for you, so you can use response.data directly
+        const data = response.data;
 
         // Ensure that data is an array
         if (Array.isArray(data)) {
@@ -258,7 +257,6 @@ const AdminInquiryPage = () => {
     </InquiryList>
   );
 };
-
 
 
 export default AdminInquiryPage;
