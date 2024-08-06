@@ -242,13 +242,18 @@ const EventPage = () => {
 
       {/* <Title>Upcoming Events</Title> */}
       <EventGrid>
-        {events.map(event => (
-          <EventCard
-            key={event._id}
-            event={event}
-          />
-        ))}
-      </EventGrid>
+  {Array.isArray(events) && events.length > 0 ? (
+    events.map(event => (
+      <EventCard
+        key={event._id}
+        event={event}
+      />
+    ))
+  ) : (
+    <p>No events available</p>
+  )}
+</EventGrid>
+
 
     
     </PageBackground>
