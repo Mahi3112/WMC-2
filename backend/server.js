@@ -40,7 +40,7 @@ const localAuthMiddleware=passport.authenticate('local',{session:false})
 
 
 app.use(cors({
-    origin: ['https://wmc-project-tk78.onrender.com', 'https://wmc-2-project.vercel.app'], // Allow both origins
+    origin: ['https://wmc-project-tk78.onrender.com', 'https://wmc-2-other.vercel.app'], // Allow both origins
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], // Allow the HTTP methods you need
     allowedHeaders: '*', // Allow all headers
     credentials: true, // Allow cookies if needed
