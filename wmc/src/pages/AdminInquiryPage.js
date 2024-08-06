@@ -182,7 +182,7 @@ const AdminInquiriesPage = () => {
         <Title>All Inquiries</Title>
         {error && <p>{error}</p>}
         <InquiryList>
-          {inquiries.map((inquiry) => (
+          {inquiries && inquiries.length && inquiries.map((inquiry) => (
             <InquiryItem key={inquiry._id}>
               <InquiryUsername>{inquiry.username}</InquiryUsername>
               <InquiryQuery>{inquiry.query}</InquiryQuery>
