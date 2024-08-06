@@ -340,7 +340,7 @@ const MembershipPage = () => {
 
                 <PricingSection>
                     <PricingTitle>Choose Your Plan</PricingTitle>
-                    <PricingTable>
+                    {/* <PricingTable>
                         {memberships.map((membership) => (
                             <PricingCard
                                 key={membership._id}
@@ -365,7 +365,41 @@ const MembershipPage = () => {
                                 )}
                             </PricingCard>
                         ))}
-                    </PricingTable>
+                    </PricingTable> */}
+
+<PricingTable>
+  {Array.isArray(memberships) && memberships.length > 0 ? (
+    memberships.map((membership) => (
+      <PricingCard
+        key={membership._id}
+        style={{
+          color: membership.color,
+          border: `1px solid ${membership.color}`,
+          backgroundColor: '#BC79A6',
+        }}
+      >
+        {currentMembership === membership.name && (
+          <div className="current-membership">Current Membership</div>
+        )}
+        <h3>{membership.name} Plan</h3>
+        <div className="price">${membership.price} / Month</div>
+        <ul className="features">
+          {membership.benefits.map((benefit, index) => (
+            <li key={index}>{benefit}</li>
+          ))}
+        </ul>
+        {currentMembership === membership.name ? (
+          <button onClick={handleCancel}>Cancel Membership</button>
+        ) : (
+          <button onClick={() => handlePurchase(membership.name)}>Purchase</button>
+        )}
+      </PricingCard>
+    ))
+  ) : (
+    <p>No memberships available</p>
+  )}
+</PricingTable>
+
                 </PricingSection>
 
                 {message && <Message>{message}</Message>}
