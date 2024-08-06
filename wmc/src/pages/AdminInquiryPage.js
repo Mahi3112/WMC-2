@@ -211,7 +211,7 @@ const AdminInquiryPage = () => {
   useEffect(() => {
     const fetchInquiries = async () => {
       try {
-        const response = await fetch('/api/inquiries');
+        const response = await fetch('/inquiry/');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
