@@ -142,22 +142,90 @@ const NavButton = styled(Link)`
   }
 `;
 
-const AdminInquiriesPage = () => {
+// const AdminInquiriesPage = () => {
+//   const [inquiries, setInquiries] = useState([]);
+//   const [error, setError] = useState(null);
+
+//   useEffect(() => {
+//     const fetchInquiries = async () => {
+//       try {
+//         const response = await axios.get('/inquiry/', {
+//           headers: {
+//             Authorization: `Bearer ${localStorage.getItem('token')}`
+//           }
+//         });
+//         setInquiries(response.data);
+//       } catch (error) {
+//         setError('Error fetching inquiries');
+//         console.error(error);
+//       }
+//     };
+
+//     fetchInquiries();
+//   }, []);
+
+//   console.log('Inquiries:', inquiries);
+
+//   if (!Array.isArray(inquiries)) {
+//     console.error('Inquiries is not an array:', inquiries);
+//     return <div>Error: inquiries should be an array</div>;
+//   }
+
+//   return (
+//     <PageBackground>
+//       <Navbar>
+//         <NavBrand>
+//           <span>Epsilon Program</span>
+//         </NavBrand>
+//         <CenteredNavLinks>
+//           <NavLink to="/admin">Add Events</NavLink>
+//           <NavLink to="/admininquiry">Inquiries</NavLink>
+//         </CenteredNavLinks>
+//         <NavButtonsContainer>
+//           {/* Add any additional nav buttons here */}
+//         </NavButtonsContainer>
+//       </Navbar>
+//       <Container>
+//         <Title>All Inquiries</Title>
+//         {error && <p>{error}</p>}
+//         <InquiryList>
+//           { inquiries.map((inquiry) => (
+//             <InquiryItem key={inquiry._id}>
+//               <InquiryUsername>{inquiry.username}</InquiryUsername>
+//               <InquiryQuery>{inquiry.query}</InquiryQuery>
+//             </InquiryItem>
+//           ))}
+//         </InquiryList>
+//       </Container>
+//     </PageBackground>
+//   );
+// };
+
+// export default AdminInquiriesPage;
+
+
+const AdminInquiryPage = () => {
   const [inquiries, setInquiries] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchInquiries = async () => {
       try {
-        const response = await axios.get('/inquiry/', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        setInquiries(response.data);
+        const response = await fetch('/api/inquiries');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        // Ensure that data is an array
+        if (Array.isArray(data)) {
+          setInquiries(data);
+        } else {
+          throw new Error('Response data is not an array');
+        }
       } catch (error) {
-        setError('Error fetching inquiries');
-        console.error(error);
+        console.error('Error fetching inquiries:', error);
+        setError(error.message);
       }
     };
 
@@ -166,39 +234,27 @@ const AdminInquiriesPage = () => {
 
   console.log('Inquiries:', inquiries);
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   if (!Array.isArray(inquiries)) {
     console.error('Inquiries is not an array:', inquiries);
     return <div>Error: inquiries should be an array</div>;
   }
 
   return (
-    <PageBackground>
-      <Navbar>
-        <NavBrand>
-          <span>Epsilon Program</span>
-        </NavBrand>
-        <CenteredNavLinks>
-          <NavLink to="/admin">Add Events</NavLink>
-          <NavLink to="/admininquiry">Inquiries</NavLink>
-        </CenteredNavLinks>
-        <NavButtonsContainer>
-          {/* Add any additional nav buttons here */}
-        </NavButtonsContainer>
-      </Navbar>
-      <Container>
-        <Title>All Inquiries</Title>
-        {error && <p>{error}</p>}
-        <InquiryList>
-          { inquiries.map((inquiry) => (
-            <InquiryItem key={inquiry._id}>
-              <InquiryUsername>{inquiry.username}</InquiryUsername>
-              <InquiryQuery>{inquiry.query}</InquiryQuery>
-            </InquiryItem>
-          ))}
-        </InquiryList>
-      </Container>
-    </PageBackground>
+    <InquiryList>
+      {inquiries.map((inquiry) => (
+        <InquiryItem key={inquiry._id}>
+          <InquiryUsername>{inquiry.username}</InquiryUsername>
+          <InquiryQuery>{inquiry.query}</InquiryQuery>
+        </InquiryItem>
+      ))}
+    </InquiryList>
   );
 };
 
-export default AdminInquiriesPage;
+
+
+export default AdminInquiryPage;
