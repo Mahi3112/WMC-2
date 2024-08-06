@@ -236,12 +236,7 @@ const EventPage = () => {
     <NavButtonsContainer>
       {/* <NavButton onClick={handleLogout}><AiOutlineLogout /></NavButton> */}
       <NavButton to="/profile"><CgProfile /></NavButton>
-      <NavButton>
-      <FlexContainer>
-        <BsCurrencyExchange className="icon" />
-        <div>{virtualCurrency.toLocaleString()}</div> {/* Format if needed */}
-      </FlexContainer>
-      </NavButton>
+      
     </NavButtonsContainer>
   </Navbar>
 
