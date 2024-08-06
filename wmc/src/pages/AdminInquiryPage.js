@@ -164,6 +164,13 @@ const AdminInquiriesPage = () => {
     fetchInquiries();
   }, []);
 
+  console.log('Inquiries:', inquiries);
+
+  if (!Array.isArray(inquiries)) {
+    console.error('Inquiries is not an array:', inquiries);
+    return <div>Error: inquiries should be an array</div>;
+  }
+
   return (
     <PageBackground>
       <Navbar>
@@ -182,7 +189,7 @@ const AdminInquiriesPage = () => {
         <Title>All Inquiries</Title>
         {error && <p>{error}</p>}
         <InquiryList>
-          {inquiries && inquiries.length && inquiries.map((inquiry) => (
+          { inquiries.map((inquiry) => (
             <InquiryItem key={inquiry._id}>
               <InquiryUsername>{inquiry.username}</InquiryUsername>
               <InquiryQuery>{inquiry.query}</InquiryQuery>
